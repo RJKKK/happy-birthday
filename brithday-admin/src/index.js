@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import Routes from "./router";
 import * as serviceWorker from './serviceWorker';
-
+import { message,notification,Modal } from 'antd';
+React.$message = message
+React.$notification = notification
+React.$Modal = Modal
 ReactDOM.render(
   <React.StrictMode>
       <Routes/>

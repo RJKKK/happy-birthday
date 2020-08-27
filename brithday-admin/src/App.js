@@ -1,11 +1,13 @@
 import React from 'react';
+import  { ContextProvider } from "./store";
 import './App.css';
 function App(props) {
-  console.log(props)
   return (
-    <div className="App">
-      {props.children}
-    </div>
+      <div className="App">
+        <ContextProvider>
+          {props.children}
+        </ContextProvider>
+      </div>
   );
 }
 
