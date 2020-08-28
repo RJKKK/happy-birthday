@@ -9,9 +9,9 @@ React.$message = message
 React.$notification = notification
 React.$Modal = Modal
 ReactDOM.render(
-  <React.StrictMode>
+
       <Routes/>
-  </React.StrictMode>,
+  ,
   document.getElementById('root')
 );
 
