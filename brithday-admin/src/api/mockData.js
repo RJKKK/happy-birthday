@@ -17,5 +17,18 @@ export default {
             "total": 30,
         },
         "msg": "请求成功"
+    },
+    userDetail:{
+        "err": 0,
+        "data":{
+            "account": "@id()",
+            "name": "@name()",
+            "logo":Random.image(),
+            "birthday": Random.date('yyyy-MM-dd'),
+            "email":Random.email(),
+            "createTime": Random.datetime(),
+            "updateTime": Random.datetime()
+        },
+        "msg": "请求成功"
     }
 }

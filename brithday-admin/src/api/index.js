@@ -4,3 +4,8 @@ export const  getUsersList = async()=>{
     const res = await get('/admin/getUsersList')
     return res.data
 }
+//获取用户个人信息
+export const  getUserDetail = async()=>{
+    const res = await get('/admin/getUserDetail')
+    return res.data
+}
