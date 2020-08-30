@@ -1,6 +1,5 @@
 import {getUsersList,getUserDetail} from "../api";
 import React,{useEffect,useState} from 'react'
-
 export function UseUserList(form) {
     const [usersList,setUsersList] = useState({})
     useEffect( ()=>{
@@ -30,6 +29,6 @@ export function UseUserDetail(account) {
             else setUserDetail(res.data)
             return ()=> {setUserDetail({})};
         })
-    },[account])
-    return userDetail
+    },[])
+    return [userDetail,setUserDetail]
 }

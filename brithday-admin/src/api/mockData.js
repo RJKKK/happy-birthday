@@ -27,7 +27,8 @@ export default {
             "birthday": Random.date('yyyy-MM-dd'),
             "email":Random.email(),
             "createTime": Random.datetime(),
-            "updateTime": Random.datetime()
+            "updateTime": Random.datetime(),
+            "gender|1":[0,1,2]
         },
         "msg": "请求成功"
     }
