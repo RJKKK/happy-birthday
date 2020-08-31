@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
+import { renderRoutes } from "react-router-config";
 import {
     DesktopOutlined,
     PieChartOutlined,
@@ -23,6 +24,7 @@ const Style = styled('div')`
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 export default function MainContent (props) {
+    console.log(props)
     const [collapsed,setCollapsed] = useState(false)
     return (
         <Style>
@@ -56,7 +58,7 @@ export default function MainContent (props) {
                         <Breadcrumb.Item>Bill</Breadcrumb.Item>
                     </Breadcrumb>
                     <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-                        {props.children}
+                        {(renderRoutes(props.route.routes))}
                     </div>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>

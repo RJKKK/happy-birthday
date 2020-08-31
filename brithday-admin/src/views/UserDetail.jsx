@@ -31,8 +31,8 @@ export default function UserDetail (props) {
                     span: 4
                 }}
                       onFinish={onFinish}>
-                    <Form.Item label="账号" name={'account'}>
-                    <Input disabled />
+                    <Form.Item name={'account'} initialValue={userDetail.account} label="账号" >
+                    <Input value={userDetail.account} disabled />
                     </Form.Item>
                     <Form.Item  label="用户昵称" name={'name'} rules={[{ required: true }]}>
                         <Input value={userDetail.name} onChange={e=>setUserDetail({...userDetail,name:e.target.value})} />
