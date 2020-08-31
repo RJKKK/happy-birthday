@@ -24,11 +24,12 @@ export function UseUserList(form) {
 export function UseUserDetail(account) {
     const [userDetail,setUserDetail] = useState({})
     useEffect(()=>{
-        getUserDetail({account}).then(res=>{
-            if(res.err!==0) return React.$message.error(res.msg)
-            else setUserDetail(res.data)
-            return ()=> {setUserDetail({})};
-        })
+        (async()=>{
+            const res = await getUserDetail({account})
+            if(res.err!==0)  return React.$message.error(res.msg)
+           else return setUserDetail(res.data)
+        })()
+        return ()=>setUserDetail({})
     },[])
     return [userDetail,setUserDetail]
 }

@@ -9,9 +9,7 @@ React.$message = message
 React.$notification = notification
 React.$Modal = Modal
 ReactDOM.render(
-
-      <Routes/>
-  ,
+      <Routes/>,
   document.getElementById('root')
 );
 

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useMemo, useRef, useState} from "react";
 import styled from "styled-components";
 import { Form, Input, Button, Select,Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
@@ -19,27 +19,25 @@ padding: 0 20vw;
 export default function UserDetail (props) {
     const onFinish = values => {
         console.log(values);
-    };
+    }
     const [userDetail,setUserDetail] = UseUserDetail(props.match.params.account)
-    // const userDetail = obj.userDetail
-    // const setUserDetail = obj.setUserDetail
-    // console.log(obj)
-    const [form] = Form.useForm();
+    const [editForm] = Form.useForm()
+    editForm.setFieldsValue(userDetail)
     return (
         <Style>
             <div className={'main'}>
                 <Avatar size={70} icon={<UserOutlined />} src={userDetail.logo} style={{'marginBottom':'8%'}} />
-                <Form form={form} name="control-hooks"   labelCol={{
+                <Form  name="control-hooks" form={editForm} initialValues={{...userDetail}}  labelCol={{
                     span: 4
                 }}
                       onFinish={onFinish}>
-                    <Form.Item label="账号" >
-                    <Input value={userDetail.account} disabled />
+                    <Form.Item label="账号" name={'account'}>
+                    <Input disabled />
                     </Form.Item>
-                    <Form.Item  label="用户昵称" rules={[{ required: true }]}>
+                    <Form.Item  label="用户昵称" name={'name'} rules={[{ required: true }]}>
                         <Input value={userDetail.name} onChange={e=>setUserDetail({...userDetail,name:e.target.value})} />
                     </Form.Item>
-                    <Form.Item  label="性别" rules={[{ required: true }]}>
+                    <Form.Item  label="性别" name={'gender'} rules={[{ required: true }]}>
                         <Select
                             placeholder="请选择"
                             allowClear
@@ -50,6 +48,9 @@ export default function UserDetail (props) {
                             <Option value={dictionary.gender.female}>女 </Option>
                             <Option value={dictionary.gender.other}>未知</Option>
                         </Select>
+                    </Form.Item>
+                    <Form.Item  label="邮箱" name={'email'} rules={[{ required: true }]}>
+                        <Input value={userDetail.name} onChange={e=>setUserDetail({...userDetail,email:e.target.value})} />
                     </Form.Item>
                     <Form.Item>
                         <Button type="primary" htmlType="submit">
