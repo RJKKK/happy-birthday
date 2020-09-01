@@ -8,9 +8,11 @@ const request = Axios.create({
     withCredentials:true,
     cancelToken: source.token
 })
+//发送前的拦截器
 // request.interceptors.request.use(config=>{
 //
 // })
+//返回时的拦截器
 // request.interceptors.response.use(res=>{
 //
 // })

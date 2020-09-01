@@ -31,6 +31,9 @@ export default function UserDetail (props) {
                     span: 4
                 }}
                       onFinish={onFinish}>
+                    <Form.Item name={'_id'} initialValue={userDetail._id} label="用户id" >
+                        <Input disabled />
+                    </Form.Item>
                     <Form.Item name={'account'} initialValue={userDetail.account} label="账号" >
                     <Input value={userDetail.account} disabled />
                     </Form.Item>

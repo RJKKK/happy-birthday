@@ -1,43 +1,47 @@
-import React, {lazy} from 'react';
-import {HashRouter, Route, Switch,Redirect} from 'react-router-dom';
+import React from 'react';
+import {HashRouter, Switch} from 'react-router-dom';
 import { renderRoutes } from 'react-router-config'
-import App from "../App";
-import MainContent from "../views/main-content.jsx";
-import UsersAdmin from '../views/usersAdmin.jsx'
-import UserDetail from '../views/UserDetail.jsx'
-const routers = [{
+import {routesRemake} from "../untils/router_extend";
+let routers = [{
     path:'/',
-    component:App,
+    component: () => import('../App'),
     routes:[
         {
             path:'/',
             exact:true,
-            // component:lazy(()=>import('../views/main-content.jsx')),
-            render:()=>(<Redirect to={'/main'}/>),
+            redirect:'/login',
         },
         {
             path:'/main',
-            // exact:true,
-            component:MainContent,
+            component: () => import('../views/main-content.jsx'),
             routes:[
                 {
                     path:'/main/',
                     exact:true,
-                    render:()=>(<Redirect to={'/main/usersAdmin'}/>),
+                    redirect:'/main/usersAdmin',
                 },
                 {
                     path:'/main/usersAdmin',
                     exact:true,
-                    // component:lazy(()=>import('../views/usersAdmin.jsx')),
-                    component:UsersAdmin,
+                    component: () => import('../views/usersAdmin.jsx'),
                 },
+
                 {
                     path:'/main/usersAdmin/:account',
                     exact:true,
-                    // component:lazy(()=>import('../views/UserDetail.jsx')),
-                    component:UserDetail
+                    component:()=>import('../views/UserDetail.jsx'),
                 },
             ]
+        },
+        {
+            path:'/login',
+            exact:true,
+            component:()=>import('../views/login.jsx')
+        },
+        {
+            path:'/register',
+            exact:true,
+            component:()=>import('../views/register.jsx')
         }
 
     ]
@@ -45,19 +49,7 @@ const routers = [{
 const Router = ()=>(
     <HashRouter>
         <Switch>
-            {/*<Route path={'/'} component={()=>(*/}
-            {/*    <App>*/}
-            {/*        <Route exact path={'/'} component={()=>(<Redirect to={'/main'} />)} />*/}
-            {/*        <Route path={'/main'} component={()=>(*/}
-            {/*            <MainContent>*/}
-            {/*                <Route exact path={'/main/'} component={()=>(<Redirect to={'/main/usersAdmin'} />)} />*/}
-            {/*                <Route exact path={'/main/usersAdmin'} component={UsersAdmin} />*/}
-            {/*                <Route exact path={'/main/usersAdmin/:account'} component={UserDetail} />*/}
-            {/*            </MainContent>*/}
-            {/*        )}/>*/}
-            {/*    </App>)*/}
-            {/*} />*/}
-            {renderRoutes(routers)}
+            {renderRoutes(routesRemake(routers))}
         </Switch>
     </HashRouter>
 )

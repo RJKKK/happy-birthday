@@ -1,9 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import  { ContextProvider } from "./store";
 import { renderRoutes } from "react-router-config";
 import './App.css';
 function App(props) {
-    console.log(props)
   return (
       <div className="App">
         <ContextProvider>

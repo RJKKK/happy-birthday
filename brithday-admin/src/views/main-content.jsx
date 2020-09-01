@@ -9,6 +9,7 @@ import {
     UserOutlined,
 } from '@ant-design/icons';
 import styled from "styled-components";
+import {UseAfterEnter} from "../hooks";
 const Style = styled('div')`
  .logo {
   height: 32px;
@@ -24,7 +25,12 @@ const Style = styled('div')`
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 export default function MainContent (props) {
-    console.log(props)
+    UseAfterEnter(props,(from,to,next)=>{
+        if(to.indexOf('main')!==-1){
+            console.log(to)
+            next()
+        }
+    })
     const [collapsed,setCollapsed] = useState(false)
     return (
         <Style>

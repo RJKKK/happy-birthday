@@ -27,9 +27,5 @@ export function throttle(fn,wait) {
         },wait)
     }
 }
-export function getInputValue(e,fn) {
-    fn(e.target.val)
-}
-export function getSelectValue(val,fn) {
-    fn(val)
-}
+
+

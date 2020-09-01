@@ -21,6 +21,7 @@ export default {
     userDetail:{
         "err": 0,
         "data":{
+            "_id":"@guid()",
             "account": "@id()",
             "name": "@name()",
             "logo":Random.image(),
