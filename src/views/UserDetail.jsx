@@ -1,8 +1,7 @@
 import React, {useMemo, useRef, useState} from "react";
-import ImgCrop from 'antd-img-crop';
+import {MyUpload} from '../components'
 import styled from "styled-components";
-import { Form, Input, Button, Select,Avatar,Upload } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { Form, Input, Button, Select,Image } from 'antd';
 import {UseUserDetail} from '../hooks';
 import dictionary from "../assert/dictionary";
 const { Option } = Select;
@@ -14,20 +13,28 @@ const Style = styled('div')`
 .main{
 padding: 0 20vw;
 }
+.ant-image-img{
+width: 100%;
+height: 100%;
+border-radius: 50%;
+}
 `;
 
 
 export default function UserDetail (props) {
-    const onFinish = values => {
-        console.log(values);
-    }
+    const onFinish = values => {}
     const [userDetail,setUserDetail] = UseUserDetail(props.match.params.account)
     const [editForm] = Form.useForm()
     editForm.setFieldsValue(userDetail)
     return (
         <Style>
             <div className={'main'}>
-                <Avatar size={70} icon={<UserOutlined />} src={userDetail.logo} style={{'marginBottom':'8%'}} />
+                    <Image
+                        height="100px"
+                        width="100px"
+                        src={userDetail.logo}
+                        style={{'marginBottom':'8%'}}
+                    />
                 <Form  name="control-hooks" form={editForm} initialValues={{...userDetail}}  labelCol={{
                     span: 4
                 }}
@@ -56,6 +63,7 @@ export default function UserDetail (props) {
                     <Form.Item  label="邮箱" name={'email'} rules={[{ required: true }]}>
                         <Input value={userDetail.name} onChange={e=>setUserDetail({...userDetail,email:e.target.value})} />
                     </Form.Item>
+                    <MyUpload getImage={(src)=>setUserDetail({...userDetail,logo:src})}></MyUpload>
                     <Form.Item>
                         <Button type="primary" htmlType="submit">
                            提交

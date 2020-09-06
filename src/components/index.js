@@ -1,2 +1,3 @@
 import MySearch from './MySearch.jsx'
-export {MySearch}
+import MyUpload from "./MyUpload";
+export {MySearch,MyUpload}
