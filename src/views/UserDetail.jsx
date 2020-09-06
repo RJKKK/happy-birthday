@@ -1,6 +1,7 @@
 import React, {useMemo, useRef, useState} from "react";
+import ImgCrop from 'antd-img-crop';
 import styled from "styled-components";
-import { Form, Input, Button, Select,Avatar } from 'antd';
+import { Form, Input, Button, Select,Avatar,Upload } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import {UseUserDetail} from '../hooks';
 import dictionary from "../assert/dictionary";
